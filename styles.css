@@ -113,6 +113,23 @@ h1 {
     font-size: 60px;
 }
 
+.gameover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #455d7a;
+    opacity: 0.9;
+    padding-top: 5vh;
+}
+
+.gameovertext {
+    color: #e3e3e3;
+    font-size: 15em;
+    text-align: center;
+}
+
 .slide-fade-enter-active {
   transition: all 1.3s ease;
 }

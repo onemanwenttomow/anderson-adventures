@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="stats">
-                        <input @keyup.enter="show = !show" v-model="playerName" type="text" name="name" value="" placeholder="enter your name" autocomplete="off" :autofocus="'autofocus'">
+                        <input @keyup.enter="startGameEnterKey" v-model="playerName" type="text" name="name" value="" placeholder="enter your name" autocomplete="off" :autofocus="'autofocus'">
                         <img id="start-button" v-if="playerName" @click="show = !show" src="Start.png" alt="">
                     </div>
                 </div>
@@ -28,7 +28,7 @@
             <div class="screen">
                 <h1 @click="increaseLevel">Level: {{level + 1}}</h1>
                 <div class="container">
-                    <div class="card">
+                    <div class="card" @click="attackPlayer">
                         <h3>{{playerName}}</h3>
                         <img :src="playerImages[current]" alt="">
                         <p>
@@ -44,16 +44,25 @@
                         <h2>V</h2>
                     </div>
 
-                    <div class="card" v-if="monsters.length">
+                    <div class="card" v-if="monsters.length" @click="attackMonster">
                         <h3>{{monsters[level][randomMonster].name}}</h3>
                         <img :src="monsters[level][randomMonster].image" alt="">
                         <p>
                             <span v-for="heart in monsters[level][randomMonster].hearts">{{heart}}</span>
                         </p>
                         <p class="attack-defense">
-                            <span>🗡️: {{monsters[level][randomMonster].attack + Math.floor(Math.random() * 3)}}</span>
-                            <span>🛡️: {{monsters[level][randomMonster].defense+ Math.floor(Math.random() * 3)}}</span>
+                            <span>🗡️: {{monsters[level][randomMonster].attack}}</span>
+                            <span>🛡️: {{monsters[level][randomMonster].defense}}</span>
                         </p>
+                    </div>
+                </div>
+
+                <div v-if="gameover" class="gameover" @click="restartGame" >
+                    <div class="gameovertext">
+                        Game
+                    </div>
+                    <div class="gameovertext">
+                        Over
                     </div>
                 </div>
 
