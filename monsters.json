@@ -1,0 +1,138 @@
+[
+    [
+        {
+            "name": "bat",
+            "image": "monsters/pipo-enemy001.png",
+            "attack": 1,
+            "defense": 1,
+            "hearts": ["❤️", "❤️"]
+        },
+        {
+            "name": "snake",
+            "image": "monsters/pipo-enemy003.png",
+            "attack": 2,
+            "defense": 2,
+            "hearts": ["❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "spider",
+            "image": "monsters/pipo-enemy004.png",
+            "attack": 1,
+            "defense": 3,
+            "hearts": ["❤️", "❤️"]
+        },
+        {
+            "name": "dino egg",
+            "image": "monsters/pipo-enemy030a.png",
+            "attack": 1,
+            "defense": 2,
+            "hearts": ["❤️", "❤️"]
+        },
+        {
+            "name": "angry sheep",
+            "image": "monsters/pipo-enemy031a.png",
+            "attack": 2,
+            "defense": 2,
+            "hearts": ["❤️", "❤️"]
+        }
+    ],
+    [
+        {
+            "name": "wolf",
+            "image": "monsters/pipo-enemy014.png",
+            "attack": 3,
+            "defense": 3,
+            "hearts": ["❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "ghost",
+            "image": "monsters/pipo-enemy010.png",
+            "attack": 3,
+            "defense": 4,
+            "hearts": ["❤️", "❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "mushroom",
+            "image": "monsters/pipo-enemy008.png",
+            "attack": 4,
+            "defense": 3,
+            "hearts": ["❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "spirit",
+            "image": "monsters/pipo-enemy012.png",
+            "attack": 2,
+            "defense": 4,
+            "hearts": ["❤️", "❤️", "❤️", "❤️"]
+        }
+    ],
+    [
+        {
+            "name": "lizard",
+            "image": "monsters/pipo-enemy016b.png",
+            "attack": 4,
+            "defense": 5,
+            "hearts": ["❤️", "❤️", "❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "cyclops",
+            "image": "monsters/pipo-enemy020.png",
+            "attack": 6,
+            "defense": 4,
+            "hearts": ["❤️", "❤️", "❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "ogre",
+            "image": "monsters/pipo-enemy019.png",
+            "attack": 8,
+            "defense": 2,
+            "hearts": ["❤️", "❤️", "❤️", "❤️", "❤️", "❤️"]
+        }
+    ],
+    [
+        {
+            "name": "dragon",
+            "image": "monsters/pipo-enemy021a.png",
+            "attack": 6,
+            "defense": 6,
+            "hearts": ["❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "griffin",
+            "image": "monsters/pipo-enemy022b.png",
+            "attack": 6,
+            "defense": 5,
+            "hearts": ["❤️", "❤️", "❤️", "❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "wizard",
+            "image": "monsters/pipo-enemy025.png",
+            "attack": 3,
+            "defense": 7,
+            "hearts": ["❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️"]
+        }
+    ],
+    [
+        {
+            "name": "demon",
+            "image": "monsters/pipo-enemy040a.png",
+            "attack": 9,
+            "defense": 9,
+            "hearts": ["❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "tower",
+            "image": "monsters/pipo-enemy033.png",
+            "attack": 6,
+            "defense": 12,
+            "hearts": ["❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️"]
+        },
+        {
+            "name": "treasure",
+            "image": "monsters/pipo-enemy032.png",
+            "attack": 3,
+            "defense": 10,
+            "hearts": ["❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️", "❤️"]
+        }
+    ]
+]

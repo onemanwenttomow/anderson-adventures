@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Anderson Adeventures</title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    </head>
+    <body>
+        <div id="main">
+            <transition name="slide-fade">
+                <div class="screen" v-if="show">
+                    <div class="container">
+                        <img id="logo" src="Anderson.png" alt="Anderson Adeventures">
+                    </div>
+                    <div class="select-player">
+                        <div v-for="player, i in playerImages" @click="current = i" :class="{current:i == current}">
+                            <img class="player" :src="player" >
+                        </div>
+                    </div>
+                    <div class="stats">
+                        <input @keyup.enter="show = !show" v-model="playerName" type="text" name="name" value="" placeholder="enter your name" autocomplete="off" :autofocus="'autofocus'">
+                        <img id="start-button" v-if="playerName" @click="show = !show" src="Start.png" alt="">
+                    </div>
+                </div>
+            </transition>
+
+            <div class="screen">
+                <h1 @click="increaseLevel">Level: {{level + 1}}</h1>
+                <div class="container">
+                    <div class="card">
+                        <h3>{{playerName}}</h3>
+                        <img :src="playerImages[current]" alt="">
+                        <p>
+                            <span v-for="heart in playerStats.health">{{heart}}</span>
+                        </p>
+                        <p class="attack-defense">
+                            <span>🗡️: {{playerStats.attack}}</span>
+                            <span>🛡️: {{playerStats.defense}}</span>
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h2>V</h2>
+                    </div>
+
+                    <div class="card" v-if="monsters.length">
+                        <h3>{{monsters[level][randomMonster].name}}</h3>
+                        <img :src="monsters[level][randomMonster].image" alt="">
+                        <p>
+                            <span v-for="heart in monsters[level][randomMonster].hearts">{{heart}}</span>
+                        </p>
+                        <p class="attack-defense">
+                            <span>🗡️: {{monsters[level][randomMonster].attack + Math.floor(Math.random() * 3)}}</span>
+                            <span>🛡️: {{monsters[level][randomMonster].defense+ Math.floor(Math.random() * 3)}}</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" charset="utf-8"></script>
+        <script src="script.js" charset="utf-8"></script>
+    </body>
+</html>

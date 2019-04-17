@@ -1,0 +1,124 @@
+/* https://colorhunt.co/palette/66816 */
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    overflow-y: hidden;
+}
+
+body {
+    background-color: #233142;
+    font-family: 'VT323', monospace;
+}
+
+h2 {
+    font-size: 48px;
+    padding: 1vw;
+    margin: 0 1vw;
+}
+
+
+#logo {
+    margin: 2vw;
+    width: 45vw;
+}
+
+#start-button {
+    width: 15vw;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2vw;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select-player {
+    display: flex;
+    justify-content: center;
+}
+
+.player {
+    width: 12vw;
+    height: 12vw;
+}
+
+.current {
+    border: 5px solid #e3e3e3;
+}
+
+.card {
+    border: 5px solid  #e3e3e3;
+    background-color: #455d7a;
+    padding: 1vw;
+    border-radius: 5px;
+    color: #e3e3e3;
+    margin: 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card h3 {
+    font-size: 40px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.card img {
+    width: 12vw;
+    height: 12vw;
+}
+
+.card p {
+    padding: 1vw;
+}
+
+.attack-defense span {
+    margin: 0 0.5vw;
+}
+
+.attack-defense {
+    font-size: 30px;
+}
+
+input[name="name"] {
+    margin: 1vw;
+    padding: 1.5vw;
+    font-size: 1.8em;
+    color: #233142;
+    text-align: center;
+    outline: none;
+    border: none;
+    font-family: 'VT323', monospace;
+}
+
+input:focus {
+    outline: none;
+}
+
+.screen {
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #e3e3e3;
+    font-size: 60px;
+}
+
+.slide-fade-enter-active {
+  transition: all 1.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(-100vh);
+}
