@@ -38,6 +38,7 @@ new Vue({
         ],
         winLose: 0,
         wounded: "",
+        playerwounded: "",
         playerImages: ["monsters/pipo-enemy018.png", "monsters/pipo-enemy018a.png", "monsters/pipo-enemy018b.png"]
     },
     created: function() {
@@ -117,13 +118,17 @@ new Vue({
 
         },
         attackPlayer: function() {
-            var playerHealth = this.playerStats.health;
-            playerHealth.shift();
-            playerHealth.push("🖤");
-            if (playerHealth.indexOf("🖤") === 0) {
-                this.winLose = 0;
-                this.gameover = true;
-            }
+            this.playerwounded = "wounded";
+            setTimeout(() => {
+                this.playerwounded = "";
+                var playerHealth = this.playerStats.health;
+                playerHealth.shift();
+                playerHealth.push("🖤");
+                if (playerHealth.indexOf("🖤") === 0) {
+                    this.winLose = 0;
+                    this.gameover = true;
+                }
+            }, 100);
         },
         playerAnswerOutcome: function() {
             this.a * this.b == this.userAnswer ? this.attackMonster() : this.attackPlayer();

@@ -30,7 +30,7 @@
                 <div class="container">
                     <div class="card">
                         <h3>{{playerName}}</h3>
-                        <img :src="playerImages[current]" alt="">
+                        <img :class="playerwounded" :src="playerImages[current]" alt="">
                         <p>
                             <span v-for="heart in playerStats.health">{{heart}}</span>
                         </p>
