@@ -17,8 +17,14 @@ new Vue({
         show: true,
         a: 0,
         b: 0,
+        timesTables: [
+            [ 10 ],
+            [ 2 , 5 ],
+            [ 3 , 4 ],
+            [ 6 , 8 ],
+            [ 6 , 7 , 9]
+        ],
         userAnswer: 0,
-        operations: ["+", "-", "*", "/"],
         gameover: false,
         gameOverText: [
             {
@@ -31,6 +37,7 @@ new Vue({
             }
         ],
         winLose: 0,
+        wounded: "",
         playerImages: ["monsters/pipo-enemy018.png", "monsters/pipo-enemy018a.png", "monsters/pipo-enemy018b.png"]
     },
     created: function() {
@@ -42,6 +49,10 @@ new Vue({
     },
     updated: function() {
         // this.getRandomMonster();
+        if (!this.show) {
+            console.log("game started");
+            this.$refs.usernumber.focus();
+        }
     },
     methods: {
         getMonsters: function() {
@@ -49,7 +60,6 @@ new Vue({
             axios.get("monsters.json")
                 .then(function({data}) {
                     app.monsters = data;
-                    console.log("monsters", app.monsters);
                     app.getRandomMonster(0);
                 });
         },
@@ -69,12 +79,10 @@ new Vue({
         },
         getNewNumbers: function() {
             this.userAnswer = null;
-            if (this.level === 0) {
-                this.a = Math.floor(Math.random() * 101);
-                this.b = Math.floor(Math.random() * 11);
-            } else if (this.level === 1) {
-                console.log("level 1");
-            }
+            var newNum = Math.floor(Math.random() * 9 + 1 + this.level);
+            newNum > 9 ? this.a = 9 : this.a = newNum;
+            this.b = this.timesTables[this.level][Math.floor(Math.random() * this.timesTables[this.level].length)];
+            console.log(this.b);
         },
         startGameEnterKey: function() {
             if (this.playerName) {
@@ -90,20 +98,23 @@ new Vue({
             this.level ++;
         },
         attackMonster: function() {
-            var monsterHearts = this.monsters[this.level][this.randomMonster].hearts;
-            monsterHearts.shift();
-            console.log(this.defeatedMonsters);
-            monsterHearts.push("🖤");
-            if (monsterHearts.indexOf("🖤") === 0 && this.level === 4) {
-                console.log("winner!");
-                this.defeatedMonsters.push(this.monsters[this.level][this.randomMonster]);
-                this.winLose = 1;
-                this.gameover = true;
-            } else if (monsterHearts.indexOf("🖤") === 0) {
-                this.defeatedMonsters.push(this.monsters[this.level][this.randomMonster]);
-                this.getRandomMonster(1);
-                this.increaseLevel();
-            }
+            this.wounded = "wounded";
+            setTimeout(() => {
+                this.wounded = "";
+                var monsterHearts = this.monsters[this.level][this.randomMonster].hearts;
+                monsterHearts.shift();
+                monsterHearts.push("🖤");
+                if (monsterHearts.indexOf("🖤") === 0 && this.level === 4) {
+                    this.defeatedMonsters.push(this.monsters[this.level][this.randomMonster]);
+                    this.winLose = 1;
+                    this.gameover = true;
+                } else if (monsterHearts.indexOf("🖤") === 0) {
+                    this.defeatedMonsters.push(this.monsters[this.level][this.randomMonster]);
+                    this.getRandomMonster(1);
+                    this.increaseLevel();
+                }
+            },100);
+
         },
         attackPlayer: function() {
             var playerHealth = this.playerStats.health;
@@ -115,17 +126,8 @@ new Vue({
             }
         },
         playerAnswerOutcome: function() {
-            console.log("made it");
-            if (this.level === 0) {
-                this.a + this.b == this.userAnswer ? this.attackMonster() : this.attackPlayer();
-                this.getNewNumbers();
-                return;
-            } else if (this.level === 1) {
-                this.a - this.b == this.userAnswer ? this.attackMonster() : this.attackPlayer();
-            } else if (this.level <= 3) {
-                this.a * this.b == this.userAnswer ? this.attackMonster() : this.attackPlayer();
-                return;
-            }
+            this.a * this.b == this.userAnswer ? this.attackMonster() : this.attackPlayer();
+            this.getNewNumbers();
         },
         onkeydown: function(event) {
             if (event.keyCode == 39 && this.current <= 1 && this.show) {

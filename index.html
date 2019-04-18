@@ -28,7 +28,7 @@
             <div class="screen">
                 <h1>Level: {{level + 1}}</h1>
                 <div class="container">
-                    <div class="card" @click="attackPlayer">
+                    <div class="card">
                         <h3>{{playerName}}</h3>
                         <img :src="playerImages[current]" alt="">
                         <p>
@@ -44,9 +44,9 @@
                         <h2>V</h2>
                     </div>
 
-                    <div class="card" v-if="monsters.length" @click="attackMonster">
+                    <div class="card" v-if="monsters.length">
                         <h3>{{monsters[level][randomMonster].name}}</h3>
-                        <img :src="monsters[level][randomMonster].image" alt="">
+                        <img :class="wounded" :src="monsters[level][randomMonster].image" alt="">
                         <p>
                             <span v-for="heart in monsters[level][randomMonster].hearts">{{heart}}</span>
                         </p>
@@ -58,7 +58,10 @@
                 </div>
 
                 <div class="question-block">
-                    {{a}} {{operations[level]}} {{b}} = <input v-model="userAnswer" type="number" name="" value=""> <span @click="playerAnswerOutcome">Submit</span>
+                    <div class="question">
+                        {{a}} · {{b}} = <input ref="usernumber" @keyup.enter="playerAnswerOutcome" v-model="userAnswer" type="number" :autofocus="'autofocus'">
+                        <span @click="playerAnswerOutcome">Submit</span>
+                    </div>
                 </div>
 
                 <div v-if="gameover" class="gameover" @click="restartGame" >
@@ -78,8 +81,8 @@
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" charset="utf-8"></script>
+        <script src="/lib/vue.js"></script>
+        <script src="/lib/axios.min.js" charset="utf-8"></script>
         <script src="script.js" charset="utf-8"></script>
     </body>
 </html>

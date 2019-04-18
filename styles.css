@@ -142,6 +142,36 @@ h1 {
     height: 10vw;
 }
 
+.question-block {
+    display: flex;
+    justify-content: center;
+    margin: 2vw;
+}
+
+.question {
+    background-color: #455d7a;
+    color: #e3e3e3;
+    font-size: 4em;
+    padding: 2vw;
+    border: 5px solid #e3e3e3;
+    border-radius: 5px;
+}
+
+.question input {
+    background-color: #e3e3e3;
+    color: #233142;
+    font-family: 'VT323', monospace;
+    font-size: 1em;
+    width: 10vw;
+    text-align: center;
+}
+
+.wounded {
+    background-color: red;
+    opacity: 0.4;
+    z-index: 10;
+}
+
 .slide-fade-enter-active {
   transition: all 1.3s ease;
 }
