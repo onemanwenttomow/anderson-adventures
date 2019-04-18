@@ -126,8 +126,20 @@ h1 {
 
 .gameovertext {
     color: #e3e3e3;
-    font-size: 15em;
+    font-size: 13em;
     text-align: center;
+}
+
+.defeatedmonsters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2vw 0;
+}
+
+.defeatedmonster img {
+    width: 10vw;
+    height: 10vw;
 }
 
 .slide-fade-enter-active {

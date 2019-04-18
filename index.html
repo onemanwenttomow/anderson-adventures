@@ -26,7 +26,7 @@
             </transition>
 
             <div class="screen">
-                <h1 @click="increaseLevel">Level: {{level + 1}}</h1>
+                <h1>Level: {{level + 1}}</h1>
                 <div class="container">
                     <div class="card" @click="attackPlayer">
                         <h3>{{playerName}}</h3>
@@ -57,12 +57,21 @@
                     </div>
                 </div>
 
+                <div class="question-block">
+                    {{a}} {{operations[level]}} {{b}} = <input v-model="userAnswer" type="number" name="" value=""> <span @click="playerAnswerOutcome">Submit</span>
+                </div>
+
                 <div v-if="gameover" class="gameover" @click="restartGame" >
                     <div class="gameovertext">
-                        Game
+                        {{gameOverText[winLose].lineOne}}
                     </div>
                     <div class="gameovertext">
-                        Over
+                        {{gameOverText[winLose].lineTwo}}
+                    </div>
+                    <div class="defeatedmonsters">
+                        <div class="defeatedmonster" v-for="monster in defeatedMonsters">
+                            <img :src="monster.image" alt="">
+                        </div>
                     </div>
                 </div>
 
