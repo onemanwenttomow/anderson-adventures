@@ -19,11 +19,13 @@
                         </div>
                     </div>
                     <div class="stats">
-                        <input @keyup.enter="startGameEnterKey" v-model="playerName" type="text" name="name" value="" placeholder="enter your name" autocomplete="off" :autofocus="'autofocus'">
+                        <input ref="playername" @keyup.enter="startGameEnterKey" v-model="playerName" type="text" name="name" value="" placeholder="enter your name" autocomplete="off" :autofocus="'autofocus'">
                         <img id="start-button" v-if="playerName" @click="show = !show" src="Start.png" alt="">
                     </div>
                 </div>
             </transition>
+
+            <transition name="slide-fade">
 
             <div class="screen">
                 <h1>Level: {{level + 1}}</h1>
@@ -79,6 +81,7 @@
                 </div>
 
             </div>
+            </transition>
         </div>
 
 

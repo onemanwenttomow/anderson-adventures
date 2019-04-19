@@ -53,6 +53,8 @@ new Vue({
         if (!this.show) {
             console.log("game started");
             this.$refs.usernumber.focus();
+        } else {
+            this.$refs.playername.focus();
         }
     },
     methods: {
