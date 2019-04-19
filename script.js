@@ -45,16 +45,19 @@ new Vue({
         document.onkeydown = this.onkeydown;
     },
     mounted: function() {
+        console.log(this.show);
         this.getMonsters();
         this.getNewNumbers();
     },
     updated: function() {
-        // this.getRandomMonster();
         if (!this.show) {
-            console.log("game started");
-            this.$refs.usernumber.focus();
+            setTimeout(() => {
+                this.$refs.usernumber.focus();
+            }, 1300);
         } else {
-            this.$refs.playername.focus();
+            setTimeout(() => {
+                this.$refs.playername.focus();
+            }, 1300);
         }
     },
     methods: {
@@ -85,12 +88,9 @@ new Vue({
             var newNum = Math.floor(Math.random() * 9 + 1 + this.level);
             newNum > 9 ? this.a = 9 : this.a = newNum;
             this.b = this.timesTables[this.level][Math.floor(Math.random() * this.timesTables[this.level].length)];
-            console.log(this.b);
         },
         startGameEnterKey: function() {
-            if (this.playerName) {
-                this.show = false;
-            }
+            this.playerName ? this.show = false : this.show = true;
         },
         getRandomMonster: function(n) {
             this.randomMonster = Math.floor(Math.random() * this.monsters[this.level + n].length);
@@ -99,6 +99,7 @@ new Vue({
             this.monsters[this.level][this.randomMonster].attack += Math.floor(Math.random() * 3);
             this.monsters[this.level][this.randomMonster].defense += Math.floor(Math.random() * 3);
             this.level ++;
+            this.getNewNumbers();
         },
         attackMonster: function() {
             this.wounded = "wounded";
