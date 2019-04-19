@@ -117,7 +117,7 @@ new Vue({
                     this.getRandomMonster(1);
                     this.increaseLevel();
                 }
-            },100);
+            }, 200);
 
         },
         attackPlayer: function() {
@@ -131,7 +131,7 @@ new Vue({
                     this.winLose = 0;
                     this.gameover = true;
                 }
-            }, 100);
+            }, 200);
         },
         playerAnswerOutcome: function() {
             this.a * this.b == this.userAnswer ? this.attackMonster() : this.attackPlayer();

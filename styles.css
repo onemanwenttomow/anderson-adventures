@@ -152,7 +152,7 @@ h1 {
     background-color: #455d7a;
     color: #e3e3e3;
     font-size: 4em;
-    padding: 2vw;
+    padding: 0 2vw 2vw 2vw;
     border: 5px solid #e3e3e3;
     border-radius: 5px;
 }
@@ -170,7 +170,14 @@ h1 {
     background-color: red;
     opacity: 0.4;
     z-index: 10;
+    filter: blur(2px);
 }
+
+.sword {
+    transform: scale(1, -1) translateY(-25px);
+    display: inline-block;
+}
+
 
 .slide-fade-enter-active {
   transition: all 1.3s ease;
