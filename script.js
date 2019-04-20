@@ -53,6 +53,11 @@ new Vue({
         this.getMonsters();
         this.getNewNumbers();
         this.makeCopyOfAllMonsters();
+        var defeatedStorageMonsters = JSON.parse(localStorage.getItem('defeatedStorageMonsters'));
+        if (defeatedStorageMonsters) {
+            this.defeatedMonstersCollection = defeatedStorageMonsters;
+        }
+        console.log("defeatedStorageMonsters", defeatedStorageMonsters);
     },
     updated: function() {
         // console.log(this.monsters[0]);
@@ -72,7 +77,6 @@ new Vue({
             axios.get("monsters.json")
                 .then(function({data}) {
                     app.monsters = data;
-                    app.monstercopy = data;
                     app.getRandomMonster(0);
                     console.log(app.monsters);
                 });
@@ -92,6 +96,9 @@ new Vue({
             };
             this.level = 0;
             this.defeatedMonsters = [];
+        },
+        setLocalStorage: function() {
+            localStorage.setItem('defeatedStorageMonsters', JSON.stringify(this.defeatedMonstersCollection));
         },
         makeCopyOfAllMonsters: function() {
             var app = this;
@@ -131,11 +138,13 @@ new Vue({
                 if (monsterHearts.indexOf("🖤") === 0 && this.level === 4) {
                     this.defeatedMonsters.push(this.monsters[this.level][this.randomMonster]);
                     this.defeatedMonstersCollection.push(this.monsters[this.level][this.randomMonster].name);
+                    this.setLocalStorage();
                     this.winLose = 1;
                     this.gameover = true;
                 } else if (monsterHearts.indexOf("🖤") === 0) {
                     this.defeatedMonsters.push(this.monsters[this.level][this.randomMonster]);
                     this.defeatedMonstersCollection.push(this.monsters[this.level][this.randomMonster].name);
+                    this.setLocalStorage();
                     this.getRandomMonster(1);
                     this.increaseLevel();
                 }
