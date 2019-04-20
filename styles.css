@@ -4,6 +4,7 @@
     margin: 0;
     box-sizing: border-box;
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 body {
@@ -178,6 +179,50 @@ h1 {
     display: inline-block;
 }
 
+.collection-button {
+    color: #e3e3e3;
+    font-size: 10em;
+    position: absolute;
+    right: -140px;
+    top: 0;
+    transition: right 1s;
+    display: flex;
+    width: 180px;
+    min-height: 100vh;
+}
+
+.collection-button:hover {
+    right: 0;
+}
+
+.chevron {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.monster-collection {
+    display: flex;
+    width: 12vw;
+    flex-wrap: wrap;
+}
+
+/* .monster-collection img {
+    width: 5vw;
+    height: 5vw;
+    opacity: 0.2;
+} */
+
+.monsternotfound {
+    width: 5vw;
+    height: 5vw;
+    opacity: 0.2;
+}
+
+.monsterfound {
+    width: 5vw;
+    height: 5vw;
+}
 
 .slide-fade-enter-active {
   transition: all 1.3s ease;

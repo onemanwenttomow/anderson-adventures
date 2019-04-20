@@ -11,7 +11,12 @@ new Vue({
             defense: (Math.floor(Math.random() * 6) + 5)
         },
         monsters: [],
+        monsterscopy: [],
         defeatedMonsters: [],
+        defeatedMonstersCollection: [],
+        allMonstersInGameArray: [],
+        monsterfound: "monsterfound",
+        monsternotfound: "monsternotfound",
         level: 0,
         randomMonster: 0,
         show: true,
@@ -45,11 +50,12 @@ new Vue({
         document.onkeydown = this.onkeydown;
     },
     mounted: function() {
-        console.log(this.show);
         this.getMonsters();
         this.getNewNumbers();
+        this.makeCopyOfAllMonsters();
     },
     updated: function() {
+        // console.log(this.monsters[0]);
         if (!this.show) {
             setTimeout(() => {
                 this.$refs.usernumber.focus();
@@ -66,11 +72,15 @@ new Vue({
             axios.get("monsters.json")
                 .then(function({data}) {
                     app.monsters = data;
+                    app.monstercopy = data;
                     app.getRandomMonster(0);
+                    console.log(app.monsters);
                 });
         },
         restartGame: function() {
             this.getMonsters();
+            this.getNewNumbers();
+            console.log("defeatedMonstersCollection", this.defeatedMonstersCollection);
             this.show = true;
             this.current = 1;
             this.playerName = "";
@@ -82,6 +92,16 @@ new Vue({
             };
             this.level = 0;
             this.defeatedMonsters = [];
+        },
+        makeCopyOfAllMonsters: function() {
+            var app = this;
+            axios.get("monsters.json")
+                .then(function({data}) {
+                    app.monsters = data;
+                    var allMonsters = app.monsters[0].concat(app.monsters[1]).concat(app.monsters[2]).concat(app.monsters[3]).concat(app.monsters[4]);
+                    app.allMonstersInGameArray = allMonsters;
+                    console.log(allMonsters);
+                });
         },
         getNewNumbers: function() {
             this.userAnswer = null;
@@ -110,10 +130,12 @@ new Vue({
                 monsterHearts.push("🖤");
                 if (monsterHearts.indexOf("🖤") === 0 && this.level === 4) {
                     this.defeatedMonsters.push(this.monsters[this.level][this.randomMonster]);
+                    this.defeatedMonstersCollection.push(this.monsters[this.level][this.randomMonster].name);
                     this.winLose = 1;
                     this.gameover = true;
                 } else if (monsterHearts.indexOf("🖤") === 0) {
                     this.defeatedMonsters.push(this.monsters[this.level][this.randomMonster]);
+                    this.defeatedMonstersCollection.push(this.monsters[this.level][this.randomMonster].name);
                     this.getRandomMonster(1);
                     this.increaseLevel();
                 }
