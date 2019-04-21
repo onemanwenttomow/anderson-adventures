@@ -20,6 +20,7 @@ new Vue({
         level: 0,
         randomMonster: 0,
         show: true,
+        multiplicationSymbol: "·",
         a: 0,
         b: 0,
         timesTables: [
@@ -53,10 +54,8 @@ new Vue({
         this.getMonsters();
         this.getNewNumbers();
         this.makeCopyOfAllMonsters();
-        var defeatedStorageMonsters = JSON.parse(localStorage.getItem('defeatedStorageMonsters'));
-        if (defeatedStorageMonsters) {
-            this.defeatedMonstersCollection = defeatedStorageMonsters;
-        }
+        this.setLanguageSymbol();
+        this.getLocalStorage();
     },
     updated: function() {
         if (!this.show) {
@@ -92,6 +91,16 @@ new Vue({
             };
             this.level = 0;
             this.defeatedMonsters = [];
+        },
+        setLanguageSymbol: function() {
+            var language = window.navigator.userLanguage || window.navigator.language;
+            language === "en-GB" ? this.multiplicationSymbol = "x" : this.multiplicationSymbol = "·";
+        },
+        getLocalStorage: function() {
+            var defeatedStorageMonsters = JSON.parse(localStorage.getItem('defeatedStorageMonsters'));
+            if (defeatedStorageMonsters) {
+                this.defeatedMonstersCollection = defeatedStorageMonsters;
+            }
         },
         setLocalStorage: function() {
             localStorage.setItem('defeatedStorageMonsters', JSON.stringify(this.defeatedMonstersCollection));
