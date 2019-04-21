@@ -57,10 +57,8 @@ new Vue({
         if (defeatedStorageMonsters) {
             this.defeatedMonstersCollection = defeatedStorageMonsters;
         }
-        console.log("defeatedStorageMonsters", defeatedStorageMonsters);
     },
     updated: function() {
-        // console.log(this.monsters[0]);
         if (!this.show) {
             setTimeout(() => {
                 this.$refs.usernumber.focus();
@@ -78,13 +76,11 @@ new Vue({
                 .then(function({data}) {
                     app.monsters = data;
                     app.getRandomMonster(0);
-                    console.log(app.monsters);
                 });
         },
         restartGame: function() {
             this.getMonsters();
             this.getNewNumbers();
-            console.log("defeatedMonstersCollection", this.defeatedMonstersCollection);
             this.show = true;
             this.current = 1;
             this.playerName = "";

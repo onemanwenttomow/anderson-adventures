@@ -227,3 +227,23 @@ h1 {
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateY(-100vh);
 }
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+    #logo {
+        width: 85vw;
+    }
+    .player {
+        width: 20vw;
+        height: 20vw;
+    }
+    .collection-button {
+        right: -11vw;
+    }
+    .monster-collection {
+        width: 27vw;
+    }
+    .card img {
+        width: 35vw;
+        height: 35vw;
+    }
+}
