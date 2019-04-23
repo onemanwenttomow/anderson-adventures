@@ -23,6 +23,7 @@ new Vue({
         multiplicationSymbol: "·",
         a: 0,
         b: 0,
+        lastA: 0,
         timesTables: [
             [ 10 ],
             [ 2 , 5 ],
@@ -109,9 +110,16 @@ new Vue({
                 });
         },
         getNewNumbers: function() {
+            this.lastA = this.a;
+            console.log("this.lastA", this.lastA);
             this.userAnswer = null;
             var newNum = Math.floor(Math.random() * 9 + 1 + this.level);
             newNum > 9 ? this.a = 9 : this.a = newNum;
+            console.log("newNum ", newNum);
+            if (this.lastA === this.a) {
+                console.log("made it here");
+                this.getNewNumbers();
+            }
             this.b = this.timesTables[this.level][Math.floor(Math.random() * this.timesTables[this.level].length)];
         },
         startGameEnterKey: function() {
