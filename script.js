@@ -51,22 +51,11 @@ new Vue({
         document.onkeydown = this.onkeydown;
     },
     mounted: function() {
+        this.setLanguageSymbol();
         this.getMonsters();
         this.getNewNumbers();
         this.makeCopyOfAllMonsters();
-        this.setLanguageSymbol();
         this.getLocalStorage();
-    },
-    updated: function() {
-        if (!this.show) {
-            setTimeout(() => {
-                this.$refs.usernumber.focus();
-            }, 1300);
-        } else {
-            setTimeout(() => {
-                this.$refs.playername.focus();
-            }, 1300);
-        }
     },
     methods: {
         getMonsters: function() {
@@ -78,6 +67,10 @@ new Vue({
                 });
         },
         restartGame: function() {
+            this.$refs.usernumber.blur();
+            setTimeout(() => {
+                this.$refs.playername.focus();
+            }, 1300);
             this.getMonsters();
             this.getNewNumbers();
             this.show = true;
@@ -123,6 +116,9 @@ new Vue({
         },
         startGameEnterKey: function() {
             this.playerName ? this.show = false : this.show = true;
+            setTimeout(() => {
+                this.$refs.usernumber.focus();
+            }, 1300);
         },
         getRandomMonster: function(n) {
             this.randomMonster = Math.floor(Math.random() * this.monsters[this.level + n].length);
@@ -146,6 +142,7 @@ new Vue({
                     this.setLocalStorage();
                     this.winLose = 1;
                     this.gameover = true;
+                    this.restartGame();
                 } else if (monsterHearts.indexOf("🖤") === 0) {
                     this.defeatedMonsters.push(this.monsters[this.level][this.randomMonster]);
                     this.defeatedMonstersCollection.push(this.monsters[this.level][this.randomMonster].name);
@@ -154,7 +151,6 @@ new Vue({
                     this.increaseLevel();
                 }
             }, 200);
-
         },
         attackPlayer: function() {
             this.playerwounded = "wounded";
@@ -166,6 +162,7 @@ new Vue({
                 if (playerHealth.indexOf("🖤") === 0) {
                     this.winLose = 0;
                     this.gameover = true;
+                    this.restartGame();
                 }
             }, 200);
         },
