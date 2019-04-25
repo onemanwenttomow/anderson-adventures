@@ -87,8 +87,12 @@ new Vue({
             this.defeatedMonsters = [];
         },
         setLanguageSymbol: function() {
-            var language = window.navigator.userLanguage || window.navigator.language;
-            language === "en-GB" ? this.multiplicationSymbol = "x" : this.multiplicationSymbol = "·";
+            var languages = window.navigator.languages;
+            for (var i = 0; i < languages.length; i++) {
+                if (languages.indexOf('en') > -1) {
+                    this.multiplicationSymbol = "x";
+                }
+            }
         },
         getLocalStorage: function() {
             var defeatedStorageMonsters = JSON.parse(localStorage.getItem('defeatedStorageMonsters'));
@@ -104,20 +108,16 @@ new Vue({
             axios.get("monsters.json")
                 .then(function({data}) {
                     app.monsters = data;
-                    var allMonsters = app.monsters[0].concat(app.monsters[1]).concat(app.monsters[2]).concat(app.monsters[3]).concat(app.monsters[4]);
+                    var allMonsters = app.monsters[0].concat(app.monsters[1], app.monsters[2], app.monsters[3], app.monsters[4]);
                     app.allMonstersInGameArray = allMonsters;
-                    console.log(allMonsters);
                 });
         },
         getNewNumbers: function() {
             this.lastA = this.a;
-            console.log("this.lastA", this.lastA);
             this.userAnswer = null;
             var newNum = Math.floor(Math.random() * 9 + 1 + this.level);
             newNum > 9 ? this.a = 9 : this.a = newNum;
-            console.log("newNum ", newNum);
             if (this.lastA === this.a) {
-                console.log("made it here");
                 this.getNewNumbers();
             }
             this.b = this.timesTables[this.level][Math.floor(Math.random() * this.timesTables[this.level].length)];
